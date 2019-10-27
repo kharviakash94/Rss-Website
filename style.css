@@ -1,0 +1,117 @@
+
+            table {
+            border-collapse: collapse;
+            width: 100%;
+            }
+            
+            th {
+            
+            background-color: #4CAF50;
+            color: white;
+            font-size: 130%;
+            }
+
+            th, td {
+            border-collapse:collapse;
+            text-align: left;
+            padding: 8px;
+            }
+
+            tr:nth-child(even) {background-color: #f2f2f2;}
+            tr:hover {background-color:#ff6347}
+            
+            #wrapper {
+            background-size: cover;
+            margin: 0 auto;
+            padding: 10px;
+            border: 5px solid #dedede;
+            background-color: #fff;
+            border-color: #92a8d1;
+            }
+
+
+            #banner {
+            height: 80px;
+            border: 3px solid #E3E3E3;
+            background-size: cover;
+            background-color:rgb(255, 165, 0);
+            text-align: center;
+            border-color: hsl(89, 43%, 51%);
+            }
+            
+            .btn {
+            border: 2px solid black;
+            background-color: white;
+            color: black;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+            float:right;
+            }
+
+            /* Green */
+            .update {
+            margin-top: 1px;
+            border-color: #4CAF50;
+            color: green;
+            float:inside; 
+            }
+
+            .update:hover {
+            background-color: #4CAF50;
+            color: white;
+            }
+
+            #content_area {
+            position: inherit;    
+            margin: 20px 0 20px 0;
+            padding: 1px;
+            border: 3px solid #E3E3E3;
+            border-color: rgba(201, 76, 76, 0.3);
+            }  
+            
+            .multiselect {
+            width: 200px;
+            background-color: DarkSlateGray;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            float: left;
+            }
+            
+            .multiselect:hover, .dropbtn:focus {
+            background-color: #3e8e41;
+            }
+
+            .selectBox {
+            position: relative;
+            }
+
+            .selectBox select {
+            width: 100%;
+            font-weight: bold;
+            }
+
+            .overSelect {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+           
+            }
+
+            #checkboxes {
+            display: none;
+            border: 1px #dadada solid;
+            }
+
+            #checkboxes label {
+            display: block;
+            }
+
+            #checkboxes label:hover {
+            background-color: #1e90ff;
+            }

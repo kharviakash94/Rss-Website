@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rss Web Feeds</title>
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <script src="jquery-3.4.0.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+    </head>
+    <body>
+        
+        
+        <div id="wrapper">
+            
+            <div id="banner" ><button class="btn update" onclick="timeclick()" >Update</button>
+                <h1><i class="fa fa-feed" style="font-size:48px;color:red"></i> Rss Web Feeds</h1>
+                <form>
+                <div class="multiselect">
+                <div class="selectBox" onclick="showCheckboxes()">
+                <select>
+                <option>Select Provider</option>
+                </select>
+                <div class="overSelect"></div>
+                </div>
+                <div id="checkboxes" >
+                <label for="one">
+                <input type="checkbox" id="one" />Fox news</label>
+                <label for="two">
+                <input type="checkbox" id="two" />Hindustan Times</label>
+                <label for="three">
+                <input type="checkbox" id="three" />Cnn news</label>
+                <label for="four">
+                <input type="checkbox" id="four" />Newyork Times</label>
+                <label for="five">
+                <input type="checkbox" id="five" />Talksport</label>
+                
+                </div>
+                </div>
+                </form>
+                
+                
+            </div>
+	    <div id="content_area">
+       
+       <br/>
+                
+       <table border="1px">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Provider</th>
+                                        <th>Published On</th>
+                                        <th>Date of Entry</th>
+                                        
+				</tr>
+			</thead>
+			<tbody id="content"></tbody>
+		</table>
+	<script>
+            
+            window.onload=fetch();
+            
+            var expanded = false;
+
+        function showCheckboxes() {
+        var checkboxes = document.getElementById("checkboxes");
+        if (!expanded) {
+        checkboxes.style.display = "block";
+        expanded = true;
+        } else {
+        checkboxes.style.display = "none";
+        expanded = false;
+        }
+        }
+            
+            function fetch() {
+        
+                $.ajax({
+                        
+                       url:"/Mywebsite/front.jsp",
+                       Type:"GET",
+                       dataType:"json",
+                       success:function(res){
+                          var data="";
+                          for(i=0;i<res.length;i++){
+                              var p=JSON.parse(res[i]);
+                              data+="<tr><td>"+"<h3>"+p.title +"</br></br>" + "<a href=" + p.link+">"+ p.link +"</a>"+"</td><td>"+p.provider+"</td><td>"+p.pubDate+"</td><td>"+p.dateofentry+"</td></tr>";
+                          }
+                          $('#status').html("Status : Content fetched");
+                          $('#content').html(data);
+                       },
+                       error:function() {
+                           $alert("error occured");
+                       }
+                   });
+           }
+           
+                var howmanyclicks = 0; 
+                var t = 0;
+                function timeclick() {
+
+                howmanyclicks++; //count up global var by 1
+
+                if (howmanyclicks === 1) {  
+                var d = new Date();
+                t = d.getTime(); 
+                refreshPage();
+   	       
+                } else if (howmanyclicks >1) { 
+                var d2 = new Date();
+                var t2 = d2.getTime(); 
+                var timeelapsed = t2 - t; // calculate time elapsed (will be in milliSeconds)
+                
+                var timeElInMinutes = ((timeelapsed/1000)/60); //convert to minutes
+                var round =Math.round(timeElInMinutes); 
+                diff=10-round;
+   	        
+                if(round>=10){
+                refreshPage();
+                
+                }else{alert("Please wait for: "+ diff +" minutes");}
+    
+                
+              
+
+                } else {  //any other keys pressed:
+                alert("Error!");
+                }
+
+                }
+        
+            function refreshPage(){
+            
+            alert("Data is being Updated. Please Click on Ok");
+            
+            $.ajax({
+                        
+                       url:"/Mywebsite/backend.jsp",
+                       Type:"GET",
+                       
+                       success:function(){
+                        fetch();
+                        $('#status').html("Status : Content fetched");
+                        $('#content').html(data); 
+                          },
+                       error:function() {
+                           $alert("error occured");
+                       }
+                   });
+            }
+        
+        
+        </script>
+        </div>
+      </div>      
+    </body>
+</html>
